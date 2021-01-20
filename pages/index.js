@@ -1,67 +1,63 @@
-import fetchData from "../components/fetchData/fetchData";
-import Link from "next/link";
+import Layout from "../components/Navigation/Layout";
+import Head from "next/head";
+import Carousel from "react-bootstrap/Carousel";
+import styles from "../scss/_main.module.scss";
+import Button from "react-bootstrap/Button";
 
 function Home(props) {
-  // console.log("Blogs: ",props.blogs);
-  let links = props.blogs[0].related_links;
-  // console.log(links);
   return (
-    <div >
-      <h1>Blogs</h1>
+    <>
       <div>
-        {
-          props.blogs.map((blog)=>{
-            return(
-              <div key={blog.uid}>
-                <Link href={`/blogs/${blog.uid}`}>
-                  <a><h2>{blog.blog_title}</h2></a>
-                </Link>
-                <img src={blog.blog_image.url}></img>
-                <div>
-                  <span>Best Time: </span>
-                  <span>{blog.author_name}</span>
-                </div>
-              </div>
-            )
-          })
-        }
+      <Layout>
+        <Head>
+          <title>Home Page</title>
+          <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+            crossorigin="anonymous"
+          />
+        </Head>
+      </Layout>
       </div>
-      {/* <h2>Related Posts</h2>
-      {
-        links.map((link, i)=>{
-          return(
-            <div key={i}>
-              {
-                link.related_links.map((item)=>{
-                  return(
-                    <div key={item.uid} >
-                      <img src={link.link_image.url}></img>
-                      <Link href={`/blogs/${item.uid}`}>
-                      <a>{link.title}</a>
-                      </Link>
-                    </div>
-                  )
-                })
-              }
-            </div>
-          )
-        })
-     
-        }) */}
-    </div>
+      <div >
+        <Carousel className={styles["main"]}>
+          <Carousel.Item className={styles["container"]} interval={3000}>
+            <img
+              src= "https://images.unsplash.com/photo-1599429358416-9302028dfffe?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTAyfHx0cmF2ZWwlMjBnaXJsfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              className="d-block w-100 h-100"
+              alt="First slide"
+            />
+            <Carousel.Caption>
+              <Button href="/blogs">Discover More</Button>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item className={styles["container"]} interval={3000}>
+            <img
+              className="d-block w-100 h-100"
+              src = "https://images.unsplash.com/photo-1534777367038-9404f45b869a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NjN8fHRyYXZlbCUyMGdpcmx8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              alt="Third slide"
+            />
+
+            <Carousel.Caption>
+            <Button href="/blogs">Discover More</Button>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item className={styles["container"]} interval={3000}>
+            <img
+              src="https://images.unsplash.com/photo-1610551909432-6ce544bdc2b5?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjZ8fHRyYXZlbCUyMGdpcmx8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              className="d-block w-100 h-100"
+              alt="Third slide"
+            />
+
+            <Carousel.Caption>
+            <Button href="/blogs" variant="primary">Discover More</Button>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
+        </div>
+    </>
   )
 }
 
-export const getStaticProps = async () => {
-  let Blogs = await fetchData("blog_rendering").then(function success(result) {
-    return result;
-  });
-
-  return {
-    props: {
-      blogs : [...Blogs[0]],
-    },
-  };
-};
-
-export default Home;
+export default Home

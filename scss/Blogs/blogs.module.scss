@@ -1,0 +1,46 @@
+.blog-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px auto;
+    width: 80%;
+    // border: 2px solid black;
+    .blog-card{
+        width: 450px;
+        height: 450px;
+        margin: 30px 0px;
+        // border: 2px solid cornflowerblue;
+        // box-shadow: 0px 5px 5px ;
+        box-shadow: 0px 4px 6px #277da1;
+        img{
+            width: 95%;
+            height: 60%;
+        }
+        .best-time{
+            // margin-top: 20px;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            .span-lhs{
+                font-weight: bold;
+            }
+        }
+        .blog-title{
+            // color: rgb(80, 78, 78);
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            padding: 10px;
+            text-align: center;
+            &:hover{
+                color: black;
+                text-decoration: underline;
+            }
+        }
+        .btn{
+            margin-top: 5px;
+            text-align: center;
+        }
+    }
+}
+
