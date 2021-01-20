@@ -1,65 +1,67 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import fetchData from "../components/fetchData/fetchData";
+import Link from "next/link";
 
-export default function Home() {
+function Home(props) {
+  // console.log("Blogs: ",props.blogs);
+  let links = props.blogs[0].related_links;
+  // console.log(links);
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+    <div >
+      <h1>Blogs</h1>
+      <div>
+        {
+          props.blogs.map((blog)=>{
+            return(
+              <div key={blog.uid}>
+                <Link href={`/blogs/${blog.uid}`}>
+                  <a><h2>{blog.blog_title}</h2></a>
+                </Link>
+                <img src={blog.blog_image.url}></img>
+                <div>
+                  <span>Best Time: </span>
+                  <span>{blog.author_name}</span>
+                </div>
+              </div>
+            )
+          })
+        }
+      </div>
+      {/* <h2>Related Posts</h2>
+      {
+        links.map((link, i)=>{
+          return(
+            <div key={i}>
+              {
+                link.related_links.map((item)=>{
+                  return(
+                    <div key={item.uid} >
+                      <img src={link.link_image.url}></img>
+                      <Link href={`/blogs/${item.uid}`}>
+                      <a>{link.title}</a>
+                      </Link>
+                    </div>
+                  )
+                })
+              }
+            </div>
+          )
+        })
+     
+        }) */}
     </div>
   )
 }
+
+export const getStaticProps = async () => {
+  let Blogs = await fetchData("blog_rendering").then(function success(result) {
+    return result;
+  });
+
+  return {
+    props: {
+      blogs : [...Blogs[0]],
+    },
+  };
+};
+
+export default Home;
