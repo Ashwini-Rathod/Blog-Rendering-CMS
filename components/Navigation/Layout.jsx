@@ -1,9 +1,8 @@
 import Navigation from "./Navbar";
-
 const Layout = (props) =>{
     return (
         <>
-            <Navigation/>
+            <Navigation header={props.header}/>
             {props.children}
         </>
     )

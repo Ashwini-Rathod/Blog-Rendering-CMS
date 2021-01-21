@@ -1,5 +1,3 @@
-@import "variables";
-
 .container{
   width: 100%;
   height: 90vh;
@@ -11,10 +9,51 @@
 }
 .text{
   font-size: 20px;
-  // border: 2px solid black;
 }
 .traveller{
-  color: blue;
   font-size: 24px;
   font-family: monospace;
+}
+.caption{
+  font-weight: 150px;
+  font-family: cursive;
+  color: white;
+}
+.footer{
+  width: 90%;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+  .main{
+    font-family: monospace;
+    h2{
+      font-size: 26px;
+    }
+  }
+  .sm{
+    display: flex;
+    justify-content: center;
+  }
+  .sm-container{
+    h5{
+      color: #444;
+    }
+  }
+  .sm-container, .main{
+    margin-top: 40px;
+  }
+}
+.copyright{
+  margin-top: 10px;
+  text-align: center;
+  font-size: 15px;
+  color: #444;
+}
+@media(max-width: 1000px){
+  .container{
+    height: 70vw;
+  }
+  .caption{
+    font-size: 3vw;
+  }
 }

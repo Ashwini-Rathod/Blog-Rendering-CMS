@@ -3,13 +3,12 @@ import Head from "next/head";
 import fetchData from "../../components/fetchData/fetchData";
 import Layout from "../../components/Navigation/Layout";
 import styles from "../../scss/Blog/blog.module.scss";
+import Footer from "../../components/Footer/Footer";
 
 function Blog(props) {
-    // console.log(props.blog);
-    // let blog = props.blog
     return (
         <>
-            <Layout>
+            <Layout header={props.header}>
                 <Head>
                     <title>Blogs</title>
                     <link
@@ -51,16 +50,20 @@ function Blog(props) {
 
                 </div>
             </div>
+            <Footer footer={props.footer}/>
         </>
     )
 }
 
 export const getStaticProps = async (context) => {
-    // console.log("Context", context);
     let blog = await fetchData("blog_rendering", `${context.params.id}`);
+    let header = await fetchData("blog_rendering_header", "blt0adede8ddcec463f");
+    let footer = await fetchData("blog_rendering_footer", "blt09163fa35d483714");
     return {
         props: {
             blog: { ...blog },
+            header: {...header},
+            footer: {...footer},
         },
     };
 }
@@ -77,7 +80,6 @@ export const getStaticPaths = async () => {
             }
         }
     });
-    // console.log(paths);
     return {
         paths,
         fallback: false,

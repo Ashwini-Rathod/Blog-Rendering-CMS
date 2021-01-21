@@ -2,19 +2,21 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import "../../scss/_main.module.scss";
 
-const Navigation = (props) => {
+const Navigation = ({ header }) => {
     return (
         <>
-            <Navbar variant = "light" bg = "light" className="d-flex justify-content-center">          
-                <Nav fill className="justify-content-center mb-2 mt-2 align-items-center text"> 
-                    <Nav.Link href="/" className="ml-3 mr-3">Home</Nav.Link>
-                    <Nav.Link href="/blogs" className="ml-3 mr-3">Blogs</Nav.Link>
-                    <Navbar.Brand className="ml-5 mr-5 text-primary traveller ">
-                        The Traveller
+            <Navbar collapseOnSelect expand="lg" variant="light" bg="light">
+            <Navbar.Collapse id="responsive-navbar-nav" className="d-flex justify-content-center">
+                <Nav fill className="justify-content-center mb-2 mt-2 align-items-center text">
+                    <Nav.Link href={header.nav_links[0].href} className="ml-3 mr-3">{header.nav_links[0].title}</Nav.Link>
+                    <Nav.Link href={header.nav_links[1].href} className="ml-3 mr-3">{header.nav_links[1].title}</Nav.Link>
+                    <Navbar.Brand className="ml-5 mr-5 text-primary traveller">
+                        {header.brand.brand_name.title}
                     </Navbar.Brand>
-                    <Nav.Link href="/gallery" className="ml-3 mr-3">Gallery</Nav.Link>
-                    <Nav.Link href="/about" className="ml-3 mr-3">About</Nav.Link>
+                    <Nav.Link href={header.nav_links[2].href} className="ml-3 mr-3">{header.nav_links[2].title}</Nav.Link>
+                    <Nav.Link href={header.nav_links[3].href} className="ml-3 mr-3">{header.nav_links[3].title}</Nav.Link>
                 </Nav>
+            </Navbar.Collapse>
             </Navbar>
         </>
     )

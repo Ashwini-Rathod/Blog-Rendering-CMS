@@ -3,20 +3,15 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    // border: 2px solid black;
     box-shadow: 0px 5px 10px cornflowerblue;
     width: 95%;
-    // height: 200vh;
     margin: 20px auto;
     .blog-information{
         width: 65%;
         margin-top: 20px;
-        // text-align: center;
-        // margin: auto;
-    //    border: 2px solid red ;
        img{
            width: 100%;
-           height: 70vh;
+           height: 35vw;
        }
        img, h1, p {
            margin-bottom: 25px;
@@ -27,13 +22,10 @@
        }
     }
     .related-posts{
-        width: 28%;
         text-align: center;
         margin-top: 20px;
         margin-bottom: 20px;
-    //    border: 2px solid red ;
        .blog-card-container{
-    //    border: 2px solid blue;
         .blog-card{
             margin: 30px auto;
             width: 150px;
@@ -54,10 +46,29 @@
     }
 }
 .title{
-    // border: 2px solid black;
     margin: 10px;
     &:hover{
         color: black;
         text-decoration: underline;
     }
+}
+@media(max-width: 1000px){
+    .container{
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+    }
+}
+@media(max-width: 300px){
+    .container{
+        width: 100%;
+    }
+    .blog-card{
+        width: 100px;
+        height: 100px;
+        .img{
+            width: 60%;
+            height: 50%;
+        }
+    }   
 }

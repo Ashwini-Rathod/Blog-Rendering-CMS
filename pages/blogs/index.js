@@ -4,11 +4,12 @@ import Head from "next/head";
 import Layout from "../../components/Navigation/Layout";
 import styles from "../../scss/Blogs/blogs.module.scss";
 import { Button } from "react-bootstrap";
+import Footer from "../../components/Footer/Footer";
 
 function Blogs(props) {
     return (
         <>
-            <Layout>
+            <Layout header={props.header} >
                 <Head>
                     <title>Blogs</title>
                     <link
@@ -34,7 +35,7 @@ function Blogs(props) {
                                     <span>{blog.author_name}</span>
                                 </div>
                                 <div className={styles["btn"]}>
-                                   <Button href={`/blogs/${blog.uid}`} variant="danger">Read More</Button>
+                                   <Button href={`/blog/${blog.uid}`} variant="danger">Read More</Button>
                                 </div>
                             </div>
                         )
@@ -42,7 +43,7 @@ function Blogs(props) {
 
                 }
             </div>
-
+        <Footer footer={props.footer}/>
         </>
     )
 }
@@ -51,10 +52,14 @@ export const getStaticProps = async () => {
     let Blogs = await fetchData("blog_rendering").then(function success(result) {
         return result;
     });
+    let header = await fetchData("blog_rendering_header", "blt0adede8ddcec463f");
+    let footer = await fetchData("blog_rendering_footer", "blt09163fa35d483714");
 
     return {
         props: {
             blogs: [...Blogs[0]],
+            header: {...header},
+            footer: {...footer},
         },
     };
 };
