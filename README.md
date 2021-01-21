@@ -1,21 +1,21 @@
 This is a [Next.js](https://nextjs.org/) project which uses static rendering for rendering each page.
 The application is a Blog rendering project. It renders all the blogs and upon clicking a particular blog, renders the detailed information of that particular blog with some related links. On clicking upon any of the related links, it renders the detailed information of that particular blog.
 
-The application renders the following three pages:
+The application renders the following pages:
 
-## Home Page:
+### Home Page:
 
 This is the landing page for the application. Consists of carousel with some images. Each slide consists of a button. Upon clicking the button, the user will be directed to the page which contains all the blog cards.
 
-## Blogs:
+### Blogs:
 
 This is page that has all the blog cards. The blog card is a component that consists of a blog-title, blog-image and a button 'Read more'. Upon clicking the button, the user will be directed to the page which contains the detailed information about that particular blog.
 
-## Blog/[id]:
+### Blog/[id]:
 
 This page renders a blog with a particular id passed in params.
 
-## Gallery:
+### Gallery:
 
 This page consists of all the images that are related to all the blogs.
 
