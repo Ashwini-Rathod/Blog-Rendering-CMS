@@ -47,7 +47,7 @@ This content type again is a content block element but has multiple entries allo
 
 The application is hosted on vercel.
 
-Link for [https://blog-rendering-cms.vercel.app/](application).
+Link for [application](https://blog-rendering-cms.vercel.app/).
 
 
 
